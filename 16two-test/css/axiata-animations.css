@@ -1,0 +1,84 @@
+#kite-small {
+	-webkit-animation-name: kite-small-animation; /* Safari */
+	-webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 1.5s; /* Safari */    
+    -webkit-animation-iteration-count: infinite; /* Safari */
+    -webkit-animation-direction: alternate; /* Safari */    
+    animation-name: kite-small-animation;
+    animation-timing-function: linear;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Safari */
+@-webkit-keyframes kite-small-animation {
+    0%   {left:115px;}
+    100%   {left:105px;}
+}
+
+/* Standard syntax */
+@keyframes kite-small-animation {
+	0%   {left:115px;}
+    100%   {left:105px;}
+}
+
+#kite-medium {
+	-webkit-animation-name: kite-medium-animation; /* Safari */
+	-webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 1.0s; /* Safari */    
+    -webkit-animation-iteration-count: infinite; /* Safari */
+    -webkit-animation-direction: alternate; /* Safari */    
+    animation-name: kite-medium-animation;
+    animation-timing-function: linear;
+    animation-duration: 1.0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Safari */
+@-webkit-keyframes kite-medium-animation {
+    0%   {top:265px;}
+    100%   {top:285px;}
+}
+
+/* Standard syntax */
+@keyframes kite-medium-animation {
+	0%   {top:265px;}
+    100%   {top:285px;}
+}
+
+#kite-big {
+	-webkit-animation-name: kite-big-animation; /* Safari */
+	-webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 3s; /* Safari */    
+    -webkit-animation-iteration-count: infinite; /* Safari */
+    animation-name: kite-big-animation;
+    animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+/* Safari */
+@-webkit-keyframes kite-big-animation {
+    0%   {top:180px; left:95px;}
+    25%   {top:130px; left:195px;}
+    50%   {top:180px; left:225px;}
+    75%   {top:230px; left:125px;}
+    100%   {top:180px; left:95px;}
+}
+
+/* Standard syntax */
+@keyframes kite-big-animation {
+    0%   {top:180px; left:95px;}
+    25%   {top:130px; left:195px;}
+    50%   {top:180px; left:225px;}
+    75%   {top:230px; left:125px;}
+    100%   {top:180px; left:95px;}
+
+	/*0%   {top:180px; left:260px;}
+    25%   {top:130px; left:360px;}
+    50%   {top:180px; left:390px;}
+    75%   {top:230px; left:290px;}
+    100%   {top:180px; left:260px;}*/
+}
