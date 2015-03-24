@@ -97,13 +97,16 @@ $(window).resize(function() {
 function submitJoke() {
 	// var jokeContent = $('.joke-content').val();
 	var jokeContent = document.getElementById("jokedrop").innerHTML;
+	jokeContent = jokeContent.split("?").join("&#63;");
 	if (jokeContent.trim()!='') {
 		$('.btn').prop('disabled', true);
 
+		var jokeTitle = $('.joke-title').val();
+		jokeTitle = jokeTitle.split("?").join("&#63;");
 		var person = {
             Key: '<?php echo genKey($id); ?>',
             Joker: '<?php echo $id; ?>',
-            Title: $('.joke-title').val(),
+            Title: jokeTitle,
             Content: jokeContent
         }
 

@@ -103,6 +103,7 @@ function checkLogin() {
 
 function submitComment() {
 	var commentVal = $('.comment').val();
+	commentVal = commentVal.split("?").join("&#63;");
 	if (commentVal.trim()!='') {
 		$('.btn').prop('disabled', true);
 
@@ -110,7 +111,7 @@ function submitComment() {
             Key: '<?php echo genKey($id); ?>',
             Commentator: '<?php echo $id; ?>',
             JokeId: '<?php echo $jokeId; ?>',
-            Comment: $('.comment').val()
+            Comment: commentVal
         }
 
 	$.ajax({
