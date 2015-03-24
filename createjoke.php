@@ -95,7 +95,8 @@ $(window).resize(function() {
 });
 
 function submitJoke() {
-	var jokeContent = $('.joke-content').val();
+	// var jokeContent = $('.joke-content').val();
+	var jokeContent = $('#jokedrop').val();
 	if (jokeContent.trim()!='') {
 		$('.btn').prop('disabled', true);
 
@@ -124,6 +125,92 @@ function submitJoke() {
 	};
 }
 </script>
+<script type="text/javascript">
+			if(window.FileReader) { 
+			  addEventHandler(window, 'load', function() {
+			    var status = document.getElementById('status');
+			    var drop   = document.getElementById('jokedrop');
+			    var list   = document.getElementById('jokedrop');
+			  	
+			    function cancel(e) {
+			      if (e.preventDefault) { e.preventDefault(); }
+			      return false;
+			    }
+			  
+			    // Tells the browser that we *can* drop on this target
+			    addEventHandler(drop, 'dragover', cancel);
+			    addEventHandler(drop, 'dragenter', cancel);
+			    addEventHandler(drop, 'drop', function (e) {
+			  e = e || window.event; // get window.event if e argument missing (in IE)   
+			  if (e.preventDefault) { e.preventDefault(); } // stops the browser from redirecting off to the image.
+			
+			  var dt    = e.dataTransfer;
+			  var files = dt.files;
+			  for (var i=0; i<files.length; i++) {
+			    var file = files[i];
+			    var reader = new FileReader();
+			      
+			    addEventHandler(reader, 'loadend', function(e, file) {
+			    	if (file.size>102400) {
+			    		alert("Maximum image size: 100 Kb");
+			    	} else {
+			    var bin           = this.result; 
+			    var newFile       = document.createElement('div');
+			    // newFile.innerHTML = 'Loaded : '+file.name+' size '+file.size+' B';
+			    list.appendChild(newFile);  
+			    var fileNumber = list.getElementsByTagName('div').length;
+			    // status.innerHTML = fileNumber < files.length 
+			    //                  ? 'Loaded 100% of file '+fileNumber+' of '+files.length+'...' 
+			    //                  : 'Done loading. processed '+fileNumber+' files.';
+			
+			    var img = document.createElement("img"); 
+			    img.file = file;   
+			    img.src = bin;
+			    list.appendChild(img);
+			}
+			}.bindToEventHandler(file));
+			   
+			    reader.readAsDataURL(file);
+			  }
+			  return false;
+				});
+			
+			  });
+			} else { 
+			  document.getElementById('status').innerHTML = 'Your browser does not support the HTML5 FileReader.';
+			}
+			
+			function addEventHandler(obj, evt, handler) {
+			    if(obj.addEventListener) {
+			        // W3C method
+			        obj.addEventListener(evt, handler, false);
+			    } else if(obj.attachEvent) {
+			        // IE method.
+			        obj.attachEvent('on'+evt, handler);
+			    } else {
+			        // Old school method.
+			        obj['on'+evt] = handler;
+			    }
+			}
+			
+			Function.prototype.bindToEventHandler = function bindToEventHandler() {
+			  var handler = this;
+			  var boundParameters = Array.prototype.slice.call(arguments);
+			  //create closure
+			  return function(e) {
+			      e = e || window.event; // get window.event if e argument missing (in IE)   
+			      boundParameters.unshift(e);
+			      handler.apply(this, boundParameters);
+			  }
+			};
+</script>
+<style>
+#jokedrop {
+	border: 1px solid blue;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+</style>
 <?php
 require_once('html-header.php');
 	?>
@@ -142,17 +229,29 @@ require_once('html-header.php');
 <div class="row" style="margin-top:20px;">
 <div class="col-sm-2"></div>
 <div class="col-sm-8" style="margin:0 30px;">
-	<form role="form">
-    <div class="form-group">
-      <label for="email">Title</label>
-      <input type="email" class="form-control joke-title" id="email" placeholder="Title">
-    </div>
-    <div class="form-group">
-  		<label for="comment" class="joke-content-label">Joke Content *</label>
-  		<textarea class="form-control joke-content" rows="10" id="comment" placeholder="Write the joke..."></textarea>
-	</div>
-    <input type="button" class="btn btn-primary pull-right" onclick="submitJoke()" value="Post" />
-  </form>
+	<!-- <form role="form">
+    	<div class="form-group">
+      		<label for="email">Title</label>
+      		<input type="email" class="form-control joke-title" id="email" placeholder="Title">
+    	</div>
+    	<div class="form-group">
+  			<label for="comment" class="joke-content-label">Joke Content *</label>
+  			<textarea class="form-control joke-content" rows="10" id="comment" placeholder="Write the joke..."></textarea>
+		</div>
+    	<input type="button" class="btn btn-primary pull-right" onclick="submitJoke()" value="Post" />
+  	</form> -->
+  	<form role="form">
+    	<div class="form-group">
+      		<label for="email">Title</label>
+      		<input type="email" class="form-control joke-title" id="email" placeholder="Title">
+    	</div>
+    	<div class="form-group">
+  			<label for="comment" class="joke-content-label">Joke Content *</label>
+  			<div id="jokedrop" contentEditable="true" style="height:auto; min-height:300px;"></div>
+  			<!-- <textarea id="jokepost" name="jokeContent" hidden="true"></textarea> -->
+  		</div>
+    	<input type="button" class="btn btn-primary pull-right" onclick="submitJoke()" value="Post" />
+  	</form>
 </div>
 <div class="col-sm-2"></div>
 </div>
