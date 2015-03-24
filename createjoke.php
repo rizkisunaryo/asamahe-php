@@ -96,7 +96,7 @@ $(window).resize(function() {
 
 function submitJoke() {
 	// var jokeContent = $('.joke-content').val();
-	var jokeContent = $('#jokedrop').val();
+	var jokeContent = document.getElementById("jokedrop").innerHTML;
 	if (jokeContent.trim()!='') {
 		$('.btn').prop('disabled', true);
 
@@ -104,7 +104,7 @@ function submitJoke() {
             Key: '<?php echo genKey($id); ?>',
             Joker: '<?php echo $id; ?>',
             Title: $('.joke-title').val(),
-            Content: $('.joke-content').val()
+            Content: jokeContent
         }
 
 		$.ajax({
@@ -155,10 +155,10 @@ function submitJoke() {
 			    		alert("Maximum image size: 100 Kb");
 			    	} else {
 			    var bin           = this.result; 
-			    var newFile       = document.createElement('div');
+			    // var newFile       = document.createElement('div');
 			    // newFile.innerHTML = 'Loaded : '+file.name+' size '+file.size+' B';
-			    list.appendChild(newFile);  
-			    var fileNumber = list.getElementsByTagName('div').length;
+			    // list.appendChild(newFile);  
+			    // var fileNumber = list.getElementsByTagName('div').length;
 			    // status.innerHTML = fileNumber < files.length 
 			    //                  ? 'Loaded 100% of file '+fileNumber+' of '+files.length+'...' 
 			    //                  : 'Done loading. processed '+fileNumber+' files.';
