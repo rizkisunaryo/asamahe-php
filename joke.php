@@ -71,7 +71,7 @@ if (!isset($_SESSION["id"])
 
 $id=isset($_SESSION["id"])? $_SESSION["id"] : '';
 $name=isset($_SESSION["name"])? $_SESSION["name"] : '';
-$picUrl=isset($_SESSION["picUrl"])? $_SESSION["picUrl"] : '';
+$picUrl=isset($_SESSION["picUrl"])? $_SESSION["picUrl"] : 'images/unknown.png';
 
 $url = API_URL_PREFIX."joke/joke/";
 $key = genKey($id);
@@ -121,7 +121,25 @@ function submitComment() {
             success: function(data) {
                 // setTimeout(function(){window.location.href='<?php echo DOMAIN_URL."joke.php?id=".$jokeId; ?>';}, 200);
                 // window.location.href='<?php echo DOMAIN_URL."joke.php?id=".$jokeId; ?>';
-                window.location.reload();
+                // window.location.reload();
+                if (data.Status==0) {
+                	var html = '<div class="row" id="'+data.Id+'" style="min-height:80px; padding-left:60px; margin-bottom:0px; background-image:url(\'<?=$picUrl?>\'); background-repeat: no-repeat; background-position: left top;">'
+								+'<div>'
+								+'<a href="joker.php?id=<?=$id?>"><span style="font-size:14px; font-weight:bold; color:blue; word-wrap:break-word;"><?=$name?></span></a>&nbsp;'
+								+'<a onclick="deleteCommentDialog(\''+data.Id+'\')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>'
+								+'<br />'
+								+'<span style="font-size:14px; word-wrap:break-word;">'+commentVal+'</span>'
+								+'</div>'
+								+'<br />'
+							+'</div>';
+					$('.jokes').append(html);
+					$('.comment').val('');
+					$('#commentCount').text(parseInt($('#commentCount').text())+1);
+					$("html, body").animate({ scrollTop: $(document).height() }, 500);
+                } else {
+                	alert("Ups, something wrong.");
+                }
+                $('.btn').prop('disabled', false);
             },
             data: JSON.stringify(person)
         });
@@ -170,7 +188,9 @@ function deleteCommentAction(commentId) {
 		success: function(data) {
 			// setTimeout(function(){window.location.href='<?php echo DOMAIN_URL."joke.php?id=".$jokeId; ?>';}, 200);
 			// window.location.href='<?php echo DOMAIN_URL."joke.php?id=".$jokeId; ?>';
-			window.location.reload();
+			// window.location.reload();
+			$('#'+commentId).hide(500);
+			$('#commentCount').text(parseInt($('#commentCount').text())-1);
 		},
 		data: JSON.stringify(person)
     });
@@ -186,12 +206,12 @@ require_once('html-header.php');
 				<div class="col-sm-6">
 					<div class="row jokes" style="margin-left:10px; margin-right:10px;">
 						<?php
-								$picUrl='images/unknown.png';
+								$jokerPicUrl='images/unknown.png';
 								if ($joke['Joke']['JokerPicUrl']!="") {
-									$picUrl = $joke['Joke']['JokerPicUrl'];
+									$jokerPicUrl = $joke['Joke']['JokerPicUrl'];
 								}
 								?>
-							<img src="<?=$picUrl?>" style="height:60px; display:inline-block; margin-top:20px; margin-bottom:10px;">
+							<img src="<?=$jokerPicUrl?>" style="height:60px; display:inline-block; margin-top:20px; margin-bottom:10px;">
 							<div style="display:inline-block;">
 								<?php
 								$jokerName='unknown';
@@ -217,7 +237,7 @@ require_once('html-header.php');
 								<span style="font-size:14px;"><?=$joke['Joke']['Content']?></span>
 							</div>
 							<br />
-							<span><span id="like-count_<?=$joke[Joke][JokeId]?>"><?=$joke['Joke']['LikeCount']?></span> laughs · <?=$joke['Joke']['CommentCount']?> comments</span><br />
+							<span><span id="like-count_<?=$joke[Joke][JokeId]?>"><?=$joke['Joke']['LikeCount']?></span> laughs · <span id="commentCount"><?=$joke['Joke']['CommentCount']?></span> comments</span><br />
 							<div style="margin-top:10px;">
 							<?php
 							if ($id!='') {
@@ -248,12 +268,12 @@ require_once('html-header.php');
 							<?php
 							if (!is_null($joke['Comments'])) {
 							foreach ($joke['Comments'] as $arrayKey => $comment) {
-								$picUrl='images/unknown.png';
+								$commentatorPicUrl='images/unknown.png';
 								if ($comment['CommentatorPicUrl']!="") {
-									$picUrl = $comment['CommentatorPicUrl'];
+									$commentatorPicUrl = $comment['CommentatorPicUrl'];
 								}
 							?>
-							<div class="row" style="min-height:80px; padding-left:60px; margin-bottom:0px; background-image:url('<?=$picUrl?>'); background-repeat: no-repeat; background-position: left top;">
+							<div class="row" id="<?=$comment[CommentId]?>" style="min-height:80px; padding-left:60px; margin-bottom:0px; background-image:url('<?=$commentatorPicUrl?>'); background-repeat: no-repeat; background-position: left top;">
 								<div>
 								<?php
 								$jokerName='unknown';

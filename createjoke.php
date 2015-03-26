@@ -97,6 +97,11 @@ $(window).resize(function() {
 function submitJoke() {
 	// var jokeContent = $('.joke-content').val();
 	var jokeContent = document.getElementById("jokedrop").innerHTML;
+	if (jokeContent.length>153600) {
+        alert("Maximum joke content: 150 Kb");
+        return false;
+    }
+    
 	jokeContent = jokeContent.split("?").join("&#63;");
 	if (jokeContent.trim()!='') {
 		$('.btn').prop('disabled', true);
@@ -167,8 +172,9 @@ function submitJoke() {
 			    //                  : 'Done loading. processed '+fileNumber+' files.';
 			
 			    var img = document.createElement("img"); 
-			    img.file = file;   
+			    img.file = file;
 			    img.src = bin;
+			    img.className = "img-responsive";
 			    list.appendChild(img);
 			}
 			}.bindToEventHandler(file));
@@ -250,7 +256,7 @@ require_once('html-header.php');
     	</div>
     	<div class="form-group">
   			<label for="comment" class="joke-content-label">Joke Content *</label>
-  			<div id="jokedrop" contentEditable="true" style="height:auto; min-height:300px;"></div>
+  			<div id="jokedrop" contentEditable="true" style="height:auto; min-height:300px; overflow-x:scroll;"></div>
   			<!-- <textarea id="jokepost" name="jokeContent" hidden="true"></textarea> -->
   		</div>
     	<input type="button" class="btn btn-primary pull-right" onclick="submitJoke()" value="Post" />
