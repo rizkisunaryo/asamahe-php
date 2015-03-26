@@ -228,7 +228,7 @@ require_once('html-header.php');
 								<?php
 								if ($joke['Joke']['Joker']==$id) {
 								?>
-								<a onclick="deleteJokeDialog('<?=$key?>','<?=$id?>','<?=$jokeId?>','<?=DOMAIN_URL?>')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>
+								<a onclick="deleteJokeDialog('<?=$key?>','<?=$id?>','<?=$jokeId?>','<?=DOMAIN_URL?>redirect-index.php')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>
 								<?php
 								}
 								?>

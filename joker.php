@@ -132,7 +132,7 @@ $(window).scroll(function() {
 						jokeHtml+='<div style="font-size:18px; font-weight:bold;">'
 						jokeHtml+='<a href="joke.php?id='+element.JokeId+'">'+jokeTitle+'</a>'
 						if (element.Joker=='<?=$id?>') {
-							jokeHtml+='<a onclick="deleteJokeDialog(\'<?=$key?>\',\'<?=$id?>\',\''+element.JokeId+'\',\'<?=$redirUrl?>\')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>'
+							jokeHtml+='<a onclick="deleteJokeDialogFromList(\'<?=$key?>\',\'<?=$id?>\',\''+element.JokeId+'\',\'<?=$redirUrl?>\')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>'
 						}
 						jokeHtml+='</div>';
 						jokeHtml+='<div style="padding:0 10px; padding-bottom:0px;">'

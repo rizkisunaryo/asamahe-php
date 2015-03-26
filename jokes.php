@@ -4,7 +4,7 @@
 							if (!is_null($jokes['Jokes'])) {
 							foreach ($jokes['Jokes'] as $arrayKey => $joke) {
 							?>
-						<div class="row" style="padding:5px;">
+						<div class="row" id="<?=$joke['JokeId']?>" style="padding:5px;">
 							<?php
 							if ($menu!='joker') {
 								$picUrl='images/unknown.png';
@@ -36,7 +36,7 @@
 								<?php
 								if ($id==$joke['Joker']) {
 								?>
-								<a onclick="deleteJokeDialog('<?=$key?>','<?=$id?>','<?=$joke[JokeId]?>','<?=$redirUrl?>')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>
+								<a onclick="deleteJokeDialogFromList('<?=$key?>','<?=$id?>','<?=$joke[JokeId]?>','<?=$redirUrl?>')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>
 								<?php
 								}
 								?>
@@ -62,8 +62,8 @@
 							<?php 
 							}
 							?>
-						</div>
 						<hr />
+						</div>
 						<?php 
 							}
 							}
