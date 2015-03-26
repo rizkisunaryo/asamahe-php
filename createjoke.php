@@ -121,7 +121,7 @@ function submitJoke() {
             dataType: 'json',
             success: function(data) {
             	// setTimeout(function(){window.location.href='<?php echo DOMAIN_URL; ?>';}, 200);
-            	window.location.href='<?php echo DOMAIN_URL; ?>';
+            	window.location.href='<?php echo DOMAIN_URL; ?>redirect-index.php';
             },
             data: JSON.stringify(person)
         });
