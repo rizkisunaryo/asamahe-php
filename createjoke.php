@@ -101,12 +101,17 @@ function submitJoke() {
         alert("Maximum joke content: 150 Kb");
         return false;
     }
+
+	var jokeTitle = $('.joke-title').val();
+	if (jokeTitle.length>512) {
+        alert("Maximum title: 512 bytes");
+        return false;
+    }
     
 	jokeContent = jokeContent.split("?").join("&#63;");
 	if (jokeContent.trim()!='') {
 		$('.btn').prop('disabled', true);
 
-		var jokeTitle = $('.joke-title').val();
 		jokeTitle = jokeTitle.split("?").join("&#63;");
 		var person = {
             Key: '<?php echo genKey($id); ?>',

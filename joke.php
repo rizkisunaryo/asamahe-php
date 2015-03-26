@@ -103,6 +103,10 @@ function checkLogin() {
 
 function submitComment() {
 	var commentVal = $('.comment').val();
+	if (commentVal.length>2048) {
+        alert("Maximum per comment: 2 Kb");
+        return false;
+    }
 	commentVal = commentVal.split("?").join("&#63;");
 	if (commentVal.trim()!='') {
 		$('.btn').prop('disabled', true);
