@@ -15,7 +15,7 @@ function submitSearch() {
 
 </script>
 	</head>
-	<body>
+	<body style="background-color:#efefef">
 		<div id="fb-root"></div>
 		<script>
 (function(d, s, id) {
@@ -27,7 +27,7 @@ function submitSearch() {
 }(document, 'script', 'facebook-jssdk'));
 		</script>
 		<div class="container-fluid">
-			<div class="row kepala" style="position:fixed; width:100%; background-color:orange; z-index:100;">
+			<div class="row kepala" style="background-color:#ff8b0f; border-radius:10px; box-shadow: 0 5px 5px #bababa; left:0; margin:10px; position:fixed; width:1257px; z-index:100;">
 				<div class="col-sm-2">
 					<div>
 						<span style="font-size:30px; color:white;"><span style="font-weight:bold;">asamahe</span></span>

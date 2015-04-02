@@ -181,7 +181,7 @@ $(window).scroll(function() {
 						<img height="60" src="<?=$jokerPicUrl?>" class="center-block">
 						<h4 class="text-center" style="color:#3070c0; font-weight:bold;"><?=$jokerName?></h4>
 					</div>
-					<hr />
+					<!-- <hr /> -->
 		<?php
 		require_once('jokes.php');
 		?>

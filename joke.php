@@ -208,14 +208,15 @@ require_once('html-header.php');
 			<div class="row badan-row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
-					<div class="row jokes" style="margin-left:10px; margin-right:10px;">
-						<?php
-								$jokerPicUrl='images/unknown.png';
+					<div class="row jokes" style="margin-left:10px; margin-right:10px; margin-top:10px;">
+						<div style="background-color:white; border-top-left-radius:10px; border-top-right-radius:10px; padding:10px 20px 20px;">
+							<?php
+								$picUrl='images/unknown.png';
 								if ($joke['Joke']['JokerPicUrl']!="") {
-									$jokerPicUrl = $joke['Joke']['JokerPicUrl'];
+									$picUrl = $joke['Joke']['JokerPicUrl'];
 								}
 								?>
-							<img src="<?=$jokerPicUrl?>" style="height:60px; display:inline-block; margin-top:20px; margin-bottom:10px;">
+							<div class="profPicHolder"><a href="joker.php?id=<?=$joke['Joke']['Joker']?>"><img src="<?=$picUrl?>" style="height:60px; display:inline-block;"></a></div>
 							<div style="display:inline-block;">
 								<?php
 								$jokerName='unknown';
@@ -223,43 +224,60 @@ require_once('html-header.php');
 									$jokerName=$joke['Joke']['JokerName'];
 								}
 								?>
-								<span style="font-size:14px; font-weight:bold; color:blue;"><a href="joker.php?id=<?=$joke['Joke']['Joker']?>"><?=$jokerName?></a></span><br />
-								<span style="font-size:11px; font-weight:bold; color:#9197a3;"><!--?=date_format(date_create($joke['Joke']['Time']),"d M - h:i a")?-->&nbsp;</span>
+								<span style="font-size:20px; font-weight:bold; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; margin-left:10px;"><a href="joker.php?id=<?=$joke['Joke']['Joker']?>" style="color:#1fd8ed"><?=$jokerName?></a></span><br />
+								<span style="font-size:11px; font-weight:bold; color:#9197a3;"><!--?=date_format(date_create($joke['Time']),"d M - h:i a")?-->&nbsp;</span>
 							</div>
 							<br />
-							<div style="font-size:18px; font-weight:bold;">
+							<?php
+								$jokeTitle='untitled';
+								if ($joke['Joke']['Title']!="") {
+									$jokeTitle=$joke['Joke']['Title'];
+								}
+								?>
+							<div style="color:black; font-size:20px; font-weight:bold; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;">
 								<?=$jokeTitle?>
 								<?php
-								if ($joke['Joke']['Joker']==$id) {
+								if ($id==$joke['Joke']['Joker']) {
 								?>
 								<a onclick="deleteJokeDialog('<?=$key?>','<?=$id?>','<?=$jokeId?>','<?=DOMAIN_URL?>redirect-index.php')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>
 								<?php
 								}
 								?>
 							</div>
-							<div style="padding:0 10px; padding-bottom:0px;">
-								<span style="font-size:14px;"><?=$joke['Joke']['Content']?></span>
+							<div style="padding:0;">
+								<span style="font-size:16px; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;"><?=$joke['Joke']['Content']?></span>
 							</div>
 							<br />
-							<span><span id="like-count_<?=$joke[Joke][JokeId]?>"><?=$joke['Joke']['LikeCount']?></span> laughs · <span id="commentCount"><?=$joke['Joke']['CommentCount']?></span> comments</span><br />
-							<div style="margin-top:10px;">
+							<span style="color:#1fd8ed; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;"><span id="like-count_<?=$joke['Joke']['JokeId']?>"><?=$joke['Joke']['LikeCount']?></span> laughs&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;&nbsp;<?=$joke['Joke']['CommentCount']?> comments</span><br />
+						</div>
+							
+						<div style="background-color:#d9d6d6; padding:5px 15px">
 							<?php
 							if ($id!='') {
 							?>
+							<!-- <div style="border-radius:10px; border-style:solid; border-color:white; padding:5px; display:inline-block;"> -->
+							<div style="display:inline-block;">
 							<a onclick="toggleLike('<?=$key?>','<?=$joke[Joke][JokeId]?>','<?=$id?>')">
 								<img class="img-responsive function-button like-btn_<?=$joke[Joke][JokeId]?>" 
 								src="images/laugh.png" style="opacity:<?php echo $joke['Joke']['IsLiked']==0? 0.4 : 1.0; ?>">
 							</a>
+							</div>
+							<?php } ?>
+							<div class="fb-share-button" data-href="<?php echo DOMAIN_URL.'joke.php?id='.$jokeId; ?>" data-layout="button_count" style="margin-left:5px; display:inline-block;"></div>
+							<?php 
+							if ($id!='') {
+							?>
+							<div style="display:inline-block; float:right;">
 							<a onclick="report('<?=$key?>','<?=$joke[Joke][JokeId]?>','<?=$id?>')">
-								<img class="img-responsive function-button report-btn_<?=$joke[Joke][JokeId]?>" 
+								<img class="img-responsive function-button report-btn_<?=$joke['Joke']['JokeId']?>" 
 								src="images/report.png" style="opacity:<?php echo $joke['Joke']['IsReported']==0? 0.4 : 1.0; ?>">
 							</a>
-							<?php
-							}
-							?>
-							<div class="fb-share-button" data-href="<?php echo DOMAIN_URL.'joke.php?id='.$jokeId; ?>" data-layout="button_count" style="margin-left:5px;"></div>
 							</div>
-							<hr />
+							<?php } ?>
+						</div>
+
+						<br />
+
 							<form role="form">
 								<div class="form-group">
       								<label class="sr-only comment-label" for="comment">Comment:</label>

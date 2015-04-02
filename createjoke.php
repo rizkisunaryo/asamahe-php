@@ -240,7 +240,7 @@ require_once('html-header.php');
 <?php
 // } else {
 ?>
-<div class="row" style="margin-top:20px;">
+<div class="row" style="margin-top:20px; max-width:100%;">
 <div class="col-sm-2"></div>
 <div class="col-sm-8" style="margin:0 30px;">
 	<!-- <form role="form">
@@ -261,7 +261,7 @@ require_once('html-header.php');
     	</div>
     	<div class="form-group">
   			<label for="comment" class="joke-content-label">Joke Content *</label>
-  			<div id="jokedrop" contentEditable="true" style="height:auto; min-height:300px; overflow-x:scroll;"></div>
+  			<div id="jokedrop" contentEditable="true" style="height:auto; min-height:300px; overflow-x:scroll; background-color:white;"></div>
   			<!-- <textarea id="jokepost" name="jokeContent" hidden="true"></textarea> -->
   		</div>
     	<input type="button" class="btn btn-primary pull-right" onclick="submitJoke()" value="Post" />

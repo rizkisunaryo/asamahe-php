@@ -113,52 +113,68 @@ $(window).scroll(function() {
             type: 'POST',
             dataType: 'json',
             success: function(data) {
-                // console.log('test');
-                var i = 0;
+            	var i = 0;
                 $.each(data.Jokes, function(index, element) {
                 	if (i!=0) {
-                		var jokeHtml='<div class="row" style="padding:5px;">';
-                		var picUrl= element.JokerPicUrl!=''? element.JokerPicUrl : 'images/unknown.png';
-						jokeHtml+='<a href="joker.php?id='+element.Joker+'"><img src="'+picUrl+'" style="height:60px; display:inline-block; margin-bottom:10px;"></a>';
-						var jokerName= element.JokerName!=''? element.JokerName : 'unknown';
-						jokeHtml+='<div style="display:inline-block; margin-left:5px;">'
-							+'<span style="font-size:14px; font-weight:bold; color:blue;"><a href="joker.php?id='+element.Joker+'">'+jokerName+'</a></span><br />'
-							// +'<span style="font-size:11px; font-weight:bold; color:#9197a3;">'+element.Time+'</span>'
-							+'<span style="font-size:11px; font-weight:bold; color:#9197a3;">&nbsp;</span>'
-							+'</div><br />';
+						var jokeHtml='<div class="row" id="'+element.JokeId+'" style="padding:10px 5px;">'
+							+'<div style="background-color:white; border-top-left-radius:10px; border-top-right-radius:10px; padding:10px 20px 20px;">';
+
+						if ('<?=$menu?>'!='joker') {
+							var picUrl= element.JokerPicUrl!=''? element.JokerPicUrl : 'images/unknown.png';
+							var jokerName= element.JokerName!=''? element.JokerName : 'unknown';
+							jokeHtml+='<div class="profPicHolder"><a href="joker.php?id='+element.Joker+'"><img src="'+picUrl+'" style="height:60px; display:inline-block;"></a></div>'
+								+'<div style="display:inline-block;">'
+								+'<span style="font-size:20px; font-weight:bold; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; margin-left:10px;"><a href="joker.php?id='+element.Joker+'" style="color:#1fd8ed">'+jokerName+'</a></span><br />'
+								+'<span style="font-size:11px; font-weight:bold; color:#9197a3;">&nbsp;</span>'
+								+'</div>'
+								+'<br />';
+						};
+
 						var jokeTitle= element.Title!=''? element.Title : 'untitled';
-						jokeHtml+='<div style="font-size:18px; font-weight:bold;">'
-						+'<a href="joke.php?id='+element.JokeId+'" style="margin-right:5px">'+jokeTitle+'</a>';
-						if (element.Joker=='<?=$id?>') {
-							jokeHtml+='<a onclick="deleteJokeDialogFromList(\'<?=$key?>\',\'<?=$id?>\',\''+element.JokeId+'\',\'<?=$redirUrl?>\')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>'
-						}
-						jokeHtml+='</div>';
-						jokeHtml+='<div style="padding:0 10px; padding-bottom:0px;">'
-								+'<span style="font-size:14px;">'+element.Content+'</span>'
+						jokeHtml+='<div style="font-weight:bold; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;">'
+							+'<a href="joke.php?id='+element.JokeId+'" style="color:black; font-size:20px;">'+jokeTitle+'</a>';
+
+						if ('<?=$id?>'==element.Joker) {
+							jokeHtml+='<a onclick="deleteJokeDialogFromList(\'<?=$key?>\',\'<?=$id?>\',\''+element.JokeId+'\',\'<?=$redirUrl?>\')"><img class="img-responsive function-button" src="images/delete.png" alt="Chania"></a>';
+						};
+
+						jokeHtml+='</div>'
+							+'<div style="padding:0;">'
+							+'<span style="font-size:16px; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;">'+element.Content+'</span>'
 							+'</div>'
 							+'<br />'
-							+'<span>'+element.LikeCount+' laughs · <a href="joke.php?id='+element.JokeId+'">'+element.CommentCount+' comments</a></span><br />';
-						
-						jokeHtml+='<span>';
-						<?php
-						if ($id!='') {
-						?>
-							jokeHtml+='<img class="img-responsive function-button" src="images/laugh.png" alt="Chania">';
-							jokeHtml+='<img class="img-responsive function-button" src="images/report.png" alt="Chania">';
-						<?php
-						}
-						?>
-							jokeHtml+='</span>';
-						
-						jokeHtml+='</div>'
-						+'<hr />';
+							+'<span style="color:#1fd8ed; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;"><span id="like-count_'+element.LikeCount+'">'+element.LikeCount+'</span> laughs&nbsp;&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;&nbsp;<a href="joke.php?id='+element.JokeId+'" style="color:#71e2f2;">'+element.CommentCount+' comments</a></span><br />'
+							+'</div>';
+
+						if ('<?=$id?>'!='') {
+							var isLiked = element.IsLiked==0? 0.4: 1.0;
+							var isReported = element.IsReported==0? 0.4: 1.0;
+							jokeHtml+='<div style="background-color:#d9d6d6; padding:5px 15px">'
+								+'<div style="display:inline-block;">'
+								+'<a onclick="toggleLike(\'<?=$key?>\',\'<?=$joke[JokeId]?>\',\'<?=$id?>\')">'
+								+'<img class="img-responsive function-button like-btn_'+element.JokeId+'" '
+								+'src="images/laugh.png" style="opacity:'+isLiked+';">'
+								+'</a>'
+								+'</div>'
+								+'<div style="display:inline-block; float:right;">'
+								+'<a onclick="report(\'<?=$key?>\',\'<?=$joke[JokeId]?>\',\'<?=$id?>\')">'
+								+'<img class="img-responsive function-button report-btn_'+element.JokeId+'" '
+								+'src="images/report.png" style="opacity:'+isReported+';">'
+								+'</a>'
+								+'</div>'
+								+'</div>';
+						};
+							
+						jokeHtml+='</div>';
+
+
 						$('.jokes').append(jokeHtml);
 						oldestTime = element.Time;
-                }
-                    i++;
-                });
-            },
-            data: JSON.stringify(person)
+					}
+					i++;
+            	});
+        	},
+        	data: JSON.stringify(person)
         });
     }
 });
