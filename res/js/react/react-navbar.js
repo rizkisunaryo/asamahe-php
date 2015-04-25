@@ -1,10 +1,10 @@
 var NavbarSection = React.createClass({
 	render: function() {
 		return (
-      <div>
-      	<NavbarHider />
-      	<Navbar />
-      </div>
+			<div>
+				<NavbarHider />
+				<Navbar />
+			</div>
     );
 	}
 });
@@ -42,13 +42,22 @@ var LogoSection = React.createClass({
 });
 
 var MenuSection = React.createClass({
+	handleClick: function(page) {
+		this.setState({curPage: page});
+	},
+	getInitialState: function() {
+		return {curPage: curPage};
+  },
+  componentDidMount: function() {
+  	this.setState({curPage: curPage});
+  },
 	render: function() {
 		return (
       <div className="col-sm-5">
       	<div className="row">
-      		<MenuIcon iconId="recentIcon" />
-      		<MenuIcon iconId="hotIcon" />
-      		<MenuIcon iconId="topIcon" />
+      		<MenuIcon page="recent" ocFunc={this.handleClick} curPage={this.state.curPage} />
+      		<MenuIcon page="hot" ocFunc={this.handleClick} curPage={this.state.curPage} />
+      		<MenuIcon page="top" ocFunc={this.handleClick} curPage={this.state.curPage} />
       		<CreateNewJokeButton />
 				</div>
 			</div>
@@ -58,11 +67,13 @@ var MenuSection = React.createClass({
 
 var MenuIcon = React.createClass({
 	render: function() {
-		var menuHlId = curPage+'Icon'==this.props.iconId? 'menuHl' : '';
+		var menuHlId = this.props.curPage==this.props.page? 'menuHl' : '';
+		var iconId = this.props.page+'Icon';
+		var boundClick = this.props.ocFunc.bind(this, this.props.page);
 		return (
       <div className="col-xs-2">
       	<div id={menuHlId} className="text-center">
-					<div id={this.props.iconId} className="menuIcon"></div>
+					<div id={iconId} className="menuIcon btn" onClick={boundClick}></div>
 				</div>
 			</div>
     );
@@ -70,11 +81,25 @@ var MenuIcon = React.createClass({
 });
 
 var CreateNewJokeButton = React.createClass({
+	getInitialState: function() {
+    return {windowWidth: window.innerWidth};
+  },
+  handleResize: function(e) {
+    this.setState({windowWidth: window.innerWidth});
+  },
+  componentDidMount: function() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this.handleResize);
+  },
 	render: function() {
+		var classRight = this.state.windowWidth<WINDOW_WIDTH_XS? 'crtNewBtnRight '+PULL_RIGHT_CLASS : 'crtNewBtnLeft';
+		var allClasses = 'btn ' + classRight;
 		return (
       <div className="col-xs-6">
 				<div className="row">
-					<div id="crtNewBtn"></div>
+					<div id="crtNewBtn" className={allClasses}></div>
 				</div>
 			</div>
     );
@@ -100,8 +125,8 @@ var SearchHolder = React.createClass({
 	render: function() {
 		return (
       <div id="searchHolder">
-				<input id="searchTxt" type="text" size="18" placeHolder="Search..." />
-				<div id="searchBtn"></div>
+				<input id="searchTxt" type="text" size="18" placeholder="Search..." />
+				<div id="searchBtn" className="btn"></div>
 			</div>
     );
 	}
@@ -110,7 +135,7 @@ var SearchHolder = React.createClass({
 var LoginButton = React.createClass({
 	render: function() {
 		return (
-      <div id="loginBtn"></div>
+      <div id="loginBtn" className="btn"></div>
     );
 	}
 });
