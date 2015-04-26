@@ -4,25 +4,34 @@ body {
 .btn {
 	cursor: pointer;
 }
+#navbarHolder {
+	position: fixed;
+	top: -15px;
+	width:99%; 
+	left:0.5%; 
+	margin-left:0; 
+	z-index: 10;
+}
 #navbarHider {
-	position:fixed; 
+	position:relative; 
 	z-index:10; 
 	background-color:#efefef; 
 	height:15px; 
 	width:100%; 
 	left:0;
+	top:15px;
 }
 #navbar {
 	background-color:rgb(255, 139, 15); 
 	border-radius:10px; 
 	border-width:140px; 
 	box-shadow:0 5px 5px rgb(186, 186, 186); 
-	height:65px; left:0.5%; 
-	margin-left:0; 
-	position:fixed; 
+	height:65px; 
+	position:relative; 
 	top:10px; 
-	width:99%; 
 	z-index:20;
+	margin-left: inherit;
+	width: 100%;
 }
 #logoHolder {
 	height:65px;

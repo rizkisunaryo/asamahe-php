@@ -1,7 +1,7 @@
 var NavbarSection = React.createClass({
 	render: function() {
 		return (
-			<div>
+			<div id="navbarHolder">
 				<NavbarHider />
 				<Navbar />
 			</div>
@@ -70,10 +70,11 @@ var MenuIcon = React.createClass({
 		var menuHlId = this.props.curPage==this.props.page? 'menuHl' : '';
 		var iconId = this.props.page+'Icon';
 		var boundClick = this.props.ocFunc.bind(this, this.props.page);
+		var buttonClass = "menuIcon " + BUTTON_CLASS;
 		return (
       <div className="col-xs-2">
       	<div id={menuHlId} className="text-center">
-					<div id={iconId} className="menuIcon btn" onClick={boundClick}></div>
+					<div id={iconId} className={buttonClass} onClick={boundClick}></div>
 				</div>
 			</div>
     );
@@ -95,7 +96,7 @@ var CreateNewJokeButton = React.createClass({
   },
 	render: function() {
 		var classRight = this.state.windowWidth<WINDOW_WIDTH_XS? 'crtNewBtnRight '+PULL_RIGHT_CLASS : 'crtNewBtnLeft';
-		var allClasses = 'btn ' + classRight;
+		var allClasses = BUTTON_CLASS + ' ' + classRight;
 		return (
       <div className="col-xs-6">
 				<div className="row">
@@ -126,7 +127,7 @@ var SearchHolder = React.createClass({
 		return (
       <div id="searchHolder">
 				<input id="searchTxt" type="text" size="18" placeholder="Search..." />
-				<div id="searchBtn" className="btn"></div>
+				<div id="searchBtn" className={BUTTON_CLASS}></div>
 			</div>
     );
 	}
@@ -135,7 +136,7 @@ var SearchHolder = React.createClass({
 var LoginButton = React.createClass({
 	render: function() {
 		return (
-      <div id="loginBtn" className="btn"></div>
+      <div id="loginBtn" className={BUTTON_CLASS}></div>
     );
 	}
 });
