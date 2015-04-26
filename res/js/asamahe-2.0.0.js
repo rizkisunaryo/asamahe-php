@@ -21,6 +21,17 @@ function popupImg() {
 
 function showHideNavbar() {
 	var st = $(window).scrollTop();
+	var webScrollHeight = $('body').height() - $(window).height();
+	
+	if (st<0) {
+		st=0;
+		lastScrollTop=st+10;
+	}
+	else if (st>webScrollHeight) {
+		st=webScrollHeight;
+		lastScrollTop=st-10;
+	};
+
 	if (st<lastScrollTop && navbarStatus=='hidden') {
 		navbarStatus='appearing';
 		$( "#navbarHolder" ).animate({
