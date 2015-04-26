@@ -5,24 +5,37 @@ var BUTTON_CLASS = 'btn';
 var lastScrollTop = 0;
 var navbarStatus = 'showing';
 $(function() {
+	popupImg();
 	$(window).on('scroll', function(){
-		var st = $(window).scrollTop();
-		if (st<lastScrollTop && navbarStatus=='hidden') {
-			navbarStatus='appearing';
-			$( "#navbarHolder" ).animate({
-		    top:-15
-		  }, 500, function() {
-		    navbarStatus='showing';
-		  });
-		}
-		else if (st>lastScrollTop && navbarStatus=='showing') {
-			navbarStatus='disappearing';
-			$( "#navbarHolder" ).animate({
-		    top:-105
-		  }, 500, function() {
-		    navbarStatus='hidden';
-		  });
-		}
-		lastScrollTop=st
+		showHideNavbar();
 	});
 });
+
+function popupImg() {
+	$('.image-link').magnificPopup({type:'image'});
+	$('.popup-img').magnificPopup({ 
+	  type: 'image'
+		// other options
+	});
+}
+
+function showHideNavbar() {
+	var st = $(window).scrollTop();
+	if (st<lastScrollTop && navbarStatus=='hidden') {
+		navbarStatus='appearing';
+		$( "#navbarHolder" ).animate({
+	    top:-15
+	  }, 500, function() {
+	    navbarStatus='showing';
+	  });
+	}
+	else if (st>lastScrollTop && navbarStatus=='showing') {
+		navbarStatus='disappearing';
+		$( "#navbarHolder" ).animate({
+	    top:-105
+	  }, 500, function() {
+	    navbarStatus='hidden';
+	  });
+	}
+	lastScrollTop=st;
+}
