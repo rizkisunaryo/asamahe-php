@@ -29,6 +29,8 @@ function zeroized (pNumber) {
 }
 
 $(function() {
+	showNavbar($('#navbarSection'),curPage);
+
 	popupImg();
 	reposCrtNewBtn();
 	$(window).on('resize', function(){
@@ -38,6 +40,12 @@ $(function() {
 		showHideNavbar();
 	});
 });
+
+function showNavbar(pHolder,pCurPage) {
+	var navbarHtml = getNavbarHtml(pCurPage);
+	console.log(navbarHtml);
+	pHolder.html(navbarHtml);
+}
 
 function reposCrtNewBtn() {
 	var winWidth = $(window).width();
