@@ -1,6 +1,9 @@
 body {
 	background-color:#efefef;
 }
+a,a:hover {
+	text-decoration: none;
+}
 .btn {
 	cursor: pointer;
 }

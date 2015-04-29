@@ -6,39 +6,44 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="res/css/bootstrap.min.css" rel="stylesheet">
 	<link href="res/css/magnific-popup.css" rel="stylesheet">
-	<link href="res/css/asamahe-2.0.0.css" rel="stylesheet">
+	<link href="res/css/asamahe-2.0.1.css" rel="stylesheet">
+	<link href="res/css/jokes-2.0.1.css" rel="stylesheet">
 </head>
 <body>
 	<!-- <div id="debugger" style="position:fixed; top:50%; z-index:100; font-weight:bold; font-size:24px;">TEST</div> -->
+	<div id="bottomTrigger" style="position:fixed; top:100%"></div>
 
 	<div class="container-fluid">
 		<section id="navbarSection"></section>
-		<script type="text/jsx;harmony=true" src="res/js/react/react-navbar.js"></script>
+		<script type="text/jsx;harmony=true" src="res/js/react/react_navbar.js"></script>
 
-		<section id="jokesSection">
-			<div style="height:85px;"></div>
+		<section id="contentSection">
+			<div id="contentMarginTop"></div>
 			<div class="row">
-				<div class="col-sm-3"></div>
+				<div class="col-sm-3"></div>-
 				<div class="col-sm-6">
-					<div class="row" style="position:relative; margin-bottom:20px; width:98%; left:1%; margin-left:0;">
-						<div class="row" style="background-color:#fff; border-radius:10px 10px 0 0; padding:10px 20px 0;">
-							<div style="display:inline-block; border-radius: 150px; -webkit-border-radius: 150px; -moz-border-radius: 150px; overflow:hidden; border-style:solid; border-color:white; box-shadow: 0 5px 5px #bababa;height:60px; width:60px;display:inline-block; text-align:center;"><img src="res/img/initial-meme.png" /></div>
-							<div style="position:relative; display:inline-block; font-weight:bold; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; font-size:20px; top:-20px; left:10px;"><a href="#" style="text-decoration:none; color:#1fd8ed;">ASAMAHE</a></div>
-						</div>
-						<div class="row" style="background-color:#fff; padding:0 20px; font-size:20px; font-weight:bold; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;"><a href="#" style="text-decoration:none; color:#000;">Powered by:</a></div>
-						<div class="row" style="background-color:#fff; padding:0 20px 25px; font-size:20px; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; word-wrap: break-word;"><a href="res/img/powered-by.jpg" class="popup-img"><img src="res/img/powered-by.jpg" class="img-responsive" /></a></div>
-						<div class="row" style="background-color:#fff; padding:0 30px 25px; font-size:14px; font-weight:bold;"><a href="#" style="text-decoration:none; color:#1fd8ed;">0 laughs · 0 comments</a></div>
-					</div>
+					<section id="jokeListSection"></section>
+					<script type="text/jsx;harmony=true" src="res/js/react/react_jokes.js"></script>
 
-					<div class="row" style="position:relative; margin-bottom:20px; width:98%; left:1%; margin-left:0;">
-						<div class="row" style="background-color:#fff; border-radius:10px 10px 0 0; padding:10px 20px 0;">
-							<div style="display:inline-block; border-radius: 150px; -webkit-border-radius: 150px; -moz-border-radius: 150px; overflow:hidden; border-style:solid; border-color:white; box-shadow: 0 5px 5px #bababa;height:60px; width:60px;display:inline-block; text-align:center;"><img src="res/img/initial-meme.png" /></div>
-							<div style="position:relative; display:inline-block; font-weight:bold; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; font-size:20px; top:-20px; left:10px;"><a href="#" style="text-decoration:none; color:#1fd8ed;">ASAMAHE</a></div>
+					<!-- <div class="row jokeBox">
+						<div class="row jokeUpper">
+							<div class="jokerPic"><a href="#"><img src="res/img/initial-meme.png" /></a></div>
+							<div class="jokerNameBox"><span class="jokerName">ASAMAHE</span></div>
 						</div>
-						<div class="row" style="background-color:#fff; padding:0 20px; font-size:20px; font-weight:bold; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;"><a href="#" style="text-decoration:none; color:#000;">Powered by:</a></div>
-						<div class="row" style="background-color:#fff; padding:0 20px 25px; font-size:20px; font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; word-wrap: break-word;"><a href="res/img/powered-by.jpg" class="popup-img"><img src="res/img/powered-by.jpg" class="img-responsive" /></a></div>
-						<div class="row" style="background-color:#fff; padding:0 30px 25px; font-size:14px; font-weight:bold;"><a href="#" style="text-decoration:none; color:#1fd8ed;">0 laughs · 0 comments</a></div>
+						<div class="row jokeTitleBox"><span class="jokeTitle">Powered by:</span></div>
+						<div class="row jokeContent"><a href="res/img/powered-by.jpg" class="popup-img"><img src="res/img/powered-by.jpg" class="img-responsive" /></a></div>
+						<div class="row laughCommentCountBox"><a class="laughCommentCount" href="#">0 laughs · 0 comments</a></div>
 					</div>
+					
+					<div class="row jokeBox">
+						<div class="row jokeUpper">
+							<div class="jokerPic"><a href="#"><img src="res/img/initial-meme.png" /></a></div>
+							<div class="jokerNameBox"><a class="jokerName" href="#">ASAMAHE</a></div>
+						</div>
+						<div class="row jokeTitleBox"><a class="jokeTitle" href="#">Powered by:</a></div>
+						<div class="row jokeContent"><a href="res/img/powered-by.jpg" class="popup-img"><img src="res/img/powered-by.jpg" class="img-responsive" /></a></div>
+						<div class="row laughCommentCountBox"><a class="laughCommentCount" href="#">0 laughs · 0 comments</a></div>
+					</div> -->
 				</div>
 				<div class="col-sm-3"></div>
 			</div>
@@ -51,9 +56,17 @@
 	<script src="res/js/react.min.js"></script>
 	<script src="res/js/JSXTransformer.js"></script>
 	<script src="res/js/showdown.min.js"></script>
-	<script src="res/js/asamahe-2.0.0.js"></script>
+	<script src="res/js/asamahe-2.0.1.js"></script>
 	<script type="text/javascript">
 	var curPage = 'recent';
+	var apiUrl = API_URL_PREFIX+'joke/newjokes/';
+	var oldestTime = getCurTimeStr();
+	var jokesReqData = {
+		Key: '',
+		Viewer: '',
+		Time: oldestTime,
+		IsBefore: 1
+	}
 	</script>
 </body>
 </html>
