@@ -42,9 +42,7 @@ $(function() {
 });
 
 function showNavbar(pHolder,pCurPage) {
-	var navbarHtml = getNavbarHtml(pCurPage);
-	console.log(navbarHtml);
-	pHolder.html(navbarHtml);
+	pHolder.html(getNavbarHtml(pCurPage));
 }
 
 function reposCrtNewBtn() {

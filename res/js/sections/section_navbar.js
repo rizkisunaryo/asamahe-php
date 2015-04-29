@@ -15,17 +15,17 @@ function getNavbarHtml (pCurPage) {
     	'<div class="row">'+
     		'<div class="col-xs-2">'+
 	      	'<div id="'+recentHl+'" class="text-center">'+
-						'<div id="recentIcon" class="menuIcon btn"></div>'+
+						'<a href="recent-jokes.html"><div id="recentIcon" class="menuIcon btn"></div></a>'+
 					'</div>'+
 				'</div>'+
     		'<div class="col-xs-2">'+
 	      	'<div id="'+hotHl+'" class="text-center">'+
-						'<div id="hotIcon" class="menuIcon btn"></div>'+
+						'<a href="hot-jokes.html"><div id="hotIcon" class="menuIcon btn"></div></a>'+
 					'</div>'+
 				'</div>'+
 				'<div class="col-xs-2">'+
 	      	'<div id="'+topHl+'" class="text-center">'+
-						'<div id="topIcon" class="menuIcon btn"></div>'+
+						'<a href="top-jokes.html"><div id="topIcon" class="menuIcon btn"></div></a>'+
 					'</div>'+
 				'</div>'+
     		'<div class="col-xs-6">'+

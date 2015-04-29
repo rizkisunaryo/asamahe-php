@@ -15,23 +15,27 @@
 
 	<div class="container-fluid">
 		<section id="navbarSection"></section>
+		<script src="res/js/sections/section_navbar.js"></script>
 
 		<section id="contentSection">
 			<div id="contentMarginTop"></div>
 			<div class="row">
-				<div class="col-sm-3"></div>-
+				<div class="col-sm-3"></div>
 				<div class="col-sm-6">
+					<section id="jokeListSection">
 
-					<div class="row jokeBox">
-						<div class="row jokeUpper">
-							<div class="jokerPicBox"><a class="jokerPic" href="#"><img src="res/img/initial-meme.png" /></a></div>
-							<div class="jokerNameBox"><a class="jokerName" href="#">ASAMAHE</span></div>
-						</div>
-						<div class="row jokeTitleBox"><a class="jokeTitle" href="#">Powered by:</span></div>
-						<div class="row jokeContent"><a href="res/img/powered-by.jpg" class="popup-img"><img src="res/img/powered-by.jpg" class="img-responsive" /></a></div>
-						<div class="row laughCommentCountBox"><a class="laughCommentCount" href="#">0 laughs · 0 comments</a></div>
-					</div>
+						<!-- <div id="joke#" class="row jokeBox">
+							<div class="row jokeUpper">
+								<div class="jokerPicBox"><a class="jokerPic" href="#"><img src="res/img/initial-meme.png" /></a></div>
+								<div class="jokerNameBox"><a class="jokerName" href="#">ASAMAHE</span></div>
+							</div>
+							<div class="row jokeTitleBox"><a class="jokeTitle" href="#">Powered by:</span></div>
+							<div class="row jokeContent"><a href="res/img/powered-by.jpg" class="popup-img"><img src="res/img/powered-by.jpg" class="img-responsive" /></a></div>
+							<div class="row laughCommentCountBox"><a class="laughCommentCount" href="#">0 laughs · 0 comments</a></div>
+						</div> -->
 
+					</section>
+					<script src="res/js/sections/section_joke-box.js"></script>
 				</div>
 				<div class="col-sm-3"></div>
 			</div>
@@ -41,8 +45,8 @@
 	<script src="res/js/jquery-1.11.2.min.js"></script>
 	<script src="res/js/bootstrap.min.js"></script>
 	<script src="res/js/magnific-popup.js"></script>
-	<script src="res/js/sections/section_navbar.js"></script>
 	<script src="res/js/asamahe-2.0.1.js"></script>
+	<script src="res/js/jokes-2.0.1.js"></script>
 	<script type="text/javascript">
 	var curPage = 'recent';
 	var apiUrl = API_URL_PREFIX+'joke/newjokes/';
