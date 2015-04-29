@@ -14,36 +14,70 @@
 	<div id="bottomTrigger" style="position:fixed; top:100%"></div>
 
 	<div class="container-fluid">
-		<section id="navbarSection"></section>
-		<script type="text/jsx;harmony=true" src="res/js/react/react_navbar.js"></script>
+		<section id="navbarSection">
+			<div id="navbarHolder">
+				<div id="navbarHider"></div>
+				<div id="navbar" class="row">
+	      	<div class="col-sm-2">
+						<div id="logoHolder">
+							<div id="logo"><img src="res/img/asamahe_logo.png" /></div>
+						</div>
+					</div>
+	      	<div class="col-sm-5">
+		      	<div class="row">
+		      		<div class="col-xs-2">
+				      	<div id="menuHl" class="text-center">
+									<div id="recentIcon" class="menuIcon btn"></div>
+								</div>
+							</div>
+		      		<div class="col-xs-2">
+				      	<div class="text-center">
+									<div id="hotIcon" class="menuIcon btn"></div>
+								</div>
+							</div>
+							<div class="col-xs-2">
+				      	<div class="text-center">
+									<div id="topIcon" class="menuIcon btn"></div>
+								</div>
+							</div>
+		      		<div class="col-xs-6">
+								<div class="row">
+									<div id="crtNewBtn" class="btn"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+	      	<div class="col-sm-5">
+						<div class="row" id="rightNavHolder">
+							<div class="pull-right">
+								<div id="searchHolder">
+									<input id="searchTxt" type="text" size="18" placeholder="Search..." />
+									<div id="searchBtn" class="btn"></div>
+								</div>
+								<div id="loginBtn" class="btn"></div>
+							</div>
+						</div>
+					</div>
+	      </div>
+    	</div>
+		</section>
 
 		<section id="contentSection">
 			<div id="contentMarginTop"></div>
 			<div class="row">
 				<div class="col-sm-3"></div>-
 				<div class="col-sm-6">
-					<section id="jokeListSection"></section>
-					<script type="text/jsx;harmony=true" src="res/js/react/react_jokes.js"></script>
 
-					<!-- <div class="row jokeBox">
+					<div class="row jokeBox">
 						<div class="row jokeUpper">
-							<div class="jokerPic"><a href="#"><img src="res/img/initial-meme.png" /></a></div>
+							<div class="jokerPicBox"><a class="jokerPic" href="#"><img src="res/img/initial-meme.png" /></a></div>
 							<div class="jokerNameBox"><span class="jokerName">ASAMAHE</span></div>
 						</div>
 						<div class="row jokeTitleBox"><span class="jokeTitle">Powered by:</span></div>
 						<div class="row jokeContent"><a href="res/img/powered-by.jpg" class="popup-img"><img src="res/img/powered-by.jpg" class="img-responsive" /></a></div>
 						<div class="row laughCommentCountBox"><a class="laughCommentCount" href="#">0 laughs · 0 comments</a></div>
 					</div>
-					
-					<div class="row jokeBox">
-						<div class="row jokeUpper">
-							<div class="jokerPic"><a href="#"><img src="res/img/initial-meme.png" /></a></div>
-							<div class="jokerNameBox"><a class="jokerName" href="#">ASAMAHE</a></div>
-						</div>
-						<div class="row jokeTitleBox"><a class="jokeTitle" href="#">Powered by:</a></div>
-						<div class="row jokeContent"><a href="res/img/powered-by.jpg" class="popup-img"><img src="res/img/powered-by.jpg" class="img-responsive" /></a></div>
-						<div class="row laughCommentCountBox"><a class="laughCommentCount" href="#">0 laughs · 0 comments</a></div>
-					</div> -->
+
 				</div>
 				<div class="col-sm-3"></div>
 			</div>

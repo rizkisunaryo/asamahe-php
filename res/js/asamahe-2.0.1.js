@@ -30,10 +30,31 @@ function zeroized (pNumber) {
 
 $(function() {
 	popupImg();
+	reposCrtNewBtn();
+	$(window).on('resize', function(){
+		reposCrtNewBtn();
+	});
 	$(window).on('scroll', function(){
 		showHideNavbar();
 	});
 });
+
+function reposCrtNewBtn() {
+	var winWidth = $(window).width();
+	var crtNewBtn = $('#crtNewBtn');
+	var crtNewBtnRightCls='crtNewBtnRight';
+	var crtNewBtnLeftCls='crtNewBtnLeft';
+	if (winWidth<WINDOW_WIDTH_XS) {
+		crtNewBtn.addClass(PULL_RIGHT_CLASS);
+		crtNewBtn.addClass(crtNewBtnRightCls);
+		crtNewBtn.removeClass(crtNewBtnLeftCls);
+	}
+	else {
+		crtNewBtn.removeClass(PULL_RIGHT_CLASS);
+		crtNewBtn.removeClass(crtNewBtnRightCls);
+		crtNewBtn.addClass(crtNewBtnLeftCls);
+	}
+}
 
 function popupImg() {
 	$('.image-link').magnificPopup({type:'image'});
