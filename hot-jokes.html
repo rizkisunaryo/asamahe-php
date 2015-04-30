@@ -46,18 +46,18 @@
 	<script src="res/js/asamahe-2.0.1.js"></script>
 	<script src="res/js/jokes-2.0.1.js"></script>
 	<script type="text/javascript">
-	var curPage = 'recent';
-	var loginRedir = 'recent-jokes.html';
+	var curPage = 'hot';
+	var loginRedir = 'hot-jokes.html';
 	var loginParams = null;
 
-	var apiUrl = API_URL_PREFIX+'joke/newjokes/';
-	var oldestTime = getCurTimeStr();
-
+	var apiUrl = API_URL_PREFIX+'joke/hotjokes/';
 	var jokesReqData = {
 		Key: KEY,
 		Viewer: ID,
-		Time: oldestTime,
-		IsBefore: 1
+		IsBefore: 1,
+		Score: -1000,
+		From: 0,
+		Size: 100
 	}
 	</script>
 </body>

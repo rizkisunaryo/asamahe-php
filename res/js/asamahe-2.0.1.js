@@ -5,6 +5,11 @@ var BUTTON_CLASS = 'btn';
 
 var BOTTOM_TRIGGER = $('#bottomTrigger');
 
+var ID = typeof $.cookie("id") === "undefined" ? '' : $.cookie("id");
+var KEY = typeof $.cookie("key") === "undefined" ? '' : $.cookie("key");
+var NAME = typeof $.cookie("name") === "undefined" ? '' : $.cookie("name");
+var PIC_URL = typeof $.cookie("picUrl") === "undefined" ? '' : $.cookie("picUrl");
+
 var lastScrollTop = 0;
 var navbarStatus = 'showing';
 
@@ -29,7 +34,7 @@ function zeroized (pNumber) {
 }
 
 $(function() {
-	showNavbar($('#navbarSection'),curPage);
+	showNavbar($('#navbarSection'),curPage,loginRedir,loginParams);
 
 	popupImg();
 	reposCrtNewBtn();
@@ -41,8 +46,8 @@ $(function() {
 	});
 });
 
-function showNavbar(pHolder,pCurPage) {
-	pHolder.html(getNavbarHtml(pCurPage));
+function showNavbar(pHolder,pCurPage,pLoginRedir,pParams) {
+	pHolder.html(getNavbarHtml(pCurPage,pLoginRedir,pParams));
 }
 
 function reposCrtNewBtn() {

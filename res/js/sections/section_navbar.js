@@ -1,4 +1,4 @@
-function getNavbarHtml (pCurPage) {
+function getNavbarHtml (pCurPage,pLoginRedir,pParams) {
 	var menuHlClass = 'menuHl';
 	var recentHl = pCurPage=='recent'?menuHlClass:'';
 	var hotHl = pCurPage=='hot'?menuHlClass:'';
@@ -25,7 +25,7 @@ function getNavbarHtml (pCurPage) {
 				'</div>'+
 				'<div class="col-xs-2">'+
 	      	'<div id="'+topHl+'" class="text-center">'+
-						'<a href="top-jokes.html"><div id="topIcon" class="menuIcon btn"></div></a>'+
+						'<a href="top-jokers.html"><div id="topIcon" class="menuIcon btn"></div></a>'+
 					'</div>'+
 				'</div>'+
     		'<div class="col-xs-6">'+
@@ -42,7 +42,7 @@ function getNavbarHtml (pCurPage) {
 						'<input id="searchTxt" type="text" size="18" placeholder="Search..." />'+
 						'<div id="searchBtn" class="btn"></div>'+
 					'</div>'+
-					'<a href="login.php"><div id="loginBtn" class="btn"></div></a>'+
+					'<a href="login.php?page='+pLoginRedir+'"><div id="loginBtn" class="btn"></div></a>'+
 				'</div>'+
 			'</div>'+
 		'</div>'+

@@ -1,4 +1,5 @@
 var JOKE_LIST_SECTION = $('#jokeListSection');
+var JOKE_INIT = $('#jokeInit');
 var jokeIds = [];
 
 $(function() {
@@ -6,7 +7,7 @@ $(function() {
 		reqRecentJokes(apiUrl,jokesReqData);
 	}
 	else {
-
+		reqJokes(apiUrl,jokesReqData);
 	}
 
 	$(window).on('resize', function(){
@@ -26,14 +27,36 @@ $(window).scroll(function(){
 	};
 });
 
+function reqJokes(pApiUrl,pJokesReqData) {
+	$.ajax({
+    url: pApiUrl,
+    type: 'POST',
+    dataType: 'json',
+    success: function(data) {
+        JOKE_INIT.addClass('hidden');
+    	$.each(data.Jokes, function(index, element) {
+    		if (jokeIds[element.JokeId]!=1 && element.JokeId!='' && element.Content!='') {
+    			jokeIds[element.JokeId]=1;
+    			addJokeBox(JOKE_LIST_SECTION,element.JokeId,element.Joker,element.JokerPicUrl,element.JokerName,element.Title,element.Content,element.LikeCount,element.CommentCount);
+    		}
+    	});
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }.bind(this),
+    data: JSON.stringify(pJokesReqData)
+  });
+}
+
 function reqRecentJokes(pApiUrl,pJokesReqData) {
 	$.ajax({
     url: pApiUrl,
     type: 'POST',
     dataType: 'json',
     success: function(data) {
+        JOKE_INIT.addClass('hidden');
     	$.each(data.Jokes, function(index, element) {
-    		if (jokeIds[element.JokeId]!=1) {
+    		if (jokeIds[element.JokeId]!=1 && element.JokeId!='' && element.Content!='') {
     			jokeIds[element.JokeId]=1;
     			addJokeBox(JOKE_LIST_SECTION,element.JokeId,element.Joker,element.JokerPicUrl,element.JokerName,element.Title,element.Content,element.LikeCount,element.CommentCount);
     		}

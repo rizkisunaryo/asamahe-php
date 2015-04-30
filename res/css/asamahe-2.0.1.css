@@ -7,6 +7,9 @@ a,a:hover {
 .btn {
 	cursor: pointer;
 }
+.hidden {
+	display: none;
+}
 #navbarHolder {
 	position: fixed;
 	top: -15px;

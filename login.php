@@ -39,7 +39,9 @@ use Facebook\GraphSessionInfo;
 
 FacebookSession::setDefaultApplication(FB_APP_ID,FB_APP_SECRET);
 
-$redirUrl=DOMAIN_URL.'v2/2.1.0-a/login.php';
+$v = 'v2/2.1.0-a/';
+
+$redirUrl=DOMAIN_URL.$v.'login.php?page='.$_GET['page'];
 $helper = new FacebookRedirectLoginHelper($redirUrl);
 $session = $helper->getSessionFromRedirect();
 
@@ -51,8 +53,40 @@ if(isset($session)) {
 	$id = $graph->getId();
 	$name = $graph->getName();
 	$key = genKey($id);
+	$picUrl = 'https://graph.facebook.com/'.$graph->getId().'/picture';
 
-	echo $id.' : '.$name.' : '.$key;
+	$url = API_URL_PREFIX."user/setuser/";
+	$postData = array(
+    	'Id' => $id,
+    	'Key' => $key,
+    	'Name' => $name,
+    	'PicUrl' => $picUrl
+	);
+	httpReq($url,$postData);
+
+	$cnId = "id";
+	$cvId = "fb_".$id;
+	setcookie($cnId, $cvId, time() + (86400 * 7), "/"); // 86400 = 1 day
+
+	$cnName = "name";
+	$cvName = $name;
+	setcookie($cnName, $cvName, time() + (86400 * 7), "/"); // 86400 = 1 day
+
+	$cnKey = "key";
+	$cvKey = $key;
+	setcookie($cnKey, $cvKey, time() + (86400 * 7), "/"); // 86400 = 1 day
+
+	$cnPicUrl = "picUrl";
+	$cvPicUrl = $picUrl;
+	setcookie($cnPicUrl, $cvPicUrl, time() + (86400 * 7), "/"); // 86400 = 1 day
+
+	$page = $_GET['page'];
+	$goBackPage = DOMAIN_URL.$v.$page;
+?>
+<script type="text/javascript">
+window.location.replace("<?php echo $goBackPage; ?>");
+</script>
+<?php
 }
 else {
 ?>
