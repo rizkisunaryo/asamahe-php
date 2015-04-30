@@ -42,7 +42,7 @@ function getNavbarHtml (pCurPage) {
 						'<input id="searchTxt" type="text" size="18" placeholder="Search..." />'+
 						'<div id="searchBtn" class="btn"></div>'+
 					'</div>'+
-					'<div id="loginBtn" class="btn"></div>'+
+					'<a href="login.php"><div id="loginBtn" class="btn"></div></a>'+
 				'</div>'+
 			'</div>'+
 		'</div>'+
