@@ -5,9 +5,10 @@
 .jokeBox {
 	position:relative; 
 	margin-bottom:20px; 
-	width:98%; 
-	left:1%; 
+	width:100%; 
+	left:0; 
 	margin-left:0;
+	padding: 0 20px;
 }
 
 .jokeUpper {
@@ -42,7 +43,7 @@
 	font-weight:bold; 
 	font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; 
 	font-size:20px; 
-	top:-20px; 
+	top:-17px; 
 	left:10px;
 }
 
@@ -65,7 +66,7 @@
 .jokeContent {
 	background-color:#fff; 
 	padding:0 20px 25px; 
-	font-size:20px; 
+	font-size:16px; 
 	font-family:Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; 
 	word-wrap: break-word;
 }

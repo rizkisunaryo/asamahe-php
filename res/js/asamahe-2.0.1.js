@@ -1,3 +1,4 @@
+var URL_PREFIX = 'http://asamahe.com/'
 var API_URL_PREFIX = 'http://asamahe.com:2903/api/';
 var WINDOW_WIDTH_XS = 768;
 var PULL_RIGHT_CLASS = 'pull-right';

@@ -10,6 +10,16 @@
 	<link href="res/css/jokes-2.0.1.css" rel="stylesheet">
 </head>
 <body>
+	<!-- FACEBOOK JAVASCRIPT SDK -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=1554892734776831";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
 	<div class="container-fluid">
 		<section id="navbarSection"></section>
 		<script src="res/js/sections/section_navbar.js"></script>
