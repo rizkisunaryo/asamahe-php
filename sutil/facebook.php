@@ -31,18 +31,18 @@ use Facebook\GraphSessionInfo;
 $GLOBALS['fbAppId'] = '1554892734776831';
 $GLOBALS['fbAppSecret'] = '95d8d439d82ab15984476237f1bda7f3';
 
-	function loginFB($uri) {
-FacebookSession::setDefaultApplication($GLOBALS['fbAppId'],$GLOBALS['fbAppSecret']);
+function loginFB($uri) {
+	FacebookSession::setDefaultApplication($GLOBALS['fbAppId'],$GLOBALS['fbAppSecret']);
 
-$helper = new FacebookRedirectLoginHelper(DOMAIN_URL.$uri);
-$session = $helper->getSessionFromRedirect();
-if(isset($session)) {
-	$request = new FacebookRequest($session,'GET','/me');
-	$response = $request->execute();
-	$graph = $response->getGraphObject(GraphUser::className());
-	$_SESSION["id"] = $graph->getId();
-	$_SESSION['name'] = $graph->getName();
-}
-return $helper;
+	$helper = new FacebookRedirectLoginHelper(DOMAIN_URL.$uri);
+	$session = $helper->getSessionFromRedirect();
+	if(isset($session)) {
+		$request = new FacebookRequest($session,'GET','/me');
+		$response = $request->execute();
+		$graph = $response->getGraphObject(GraphUser::className());
+		$_SESSION["id"] = $graph->getId();
+		$_SESSION['name'] = $graph->getName();
 	}
+	return $helper;
+}
 ?>
